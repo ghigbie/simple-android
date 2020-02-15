@@ -10,7 +10,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
-private val TAG: String = "MainActivity"
+private const val TAG: String = "MainActivity"
+private const val TEXT_CONTENTS = "TextContens"
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,6 +55,9 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         Log.d(TAG, "onRestoreInstanceState called")
         super.onRestoreInstanceState(savedInstanceState)
+        val savedString = savedInstanceState?.getString(TEXT_CONTENTS, "")
+        textView?.text = savedString
+
     }
 
     override fun onPause() {
@@ -64,6 +68,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         Log.d(TAG, "onSaveInstanceState called")
         super.onSaveInstanceState(outState, outPersistentState)
+        outState?.putString(TEXT_CONTENTS, textView.text.toString())
     }
 
     override fun onStop() {
