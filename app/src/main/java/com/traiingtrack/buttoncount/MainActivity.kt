@@ -28,12 +28,11 @@ class MainActivity : AppCompatActivity() {
 
         button?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-            val toast: Toast =
-                Toast.makeText(applicationContext, "You tapped me, ouch!", Toast.LENGTH_SHORT);
+            val toast: Toast = Toast.makeText(applicationContext, "You tapped me, ouch!", Toast.LENGTH_SHORT);
                 numTimesClicked++;
                 name = userInput.text.toString()
                 val s: String = if(numTimesClicked > 1) "s" else ""
-                textView?.setText("$name clicked the button $numTimesClicked time$s. \n")
+                textView?.append("$name clicked the button $numTimesClicked time$s. \n")
         }
 
 
