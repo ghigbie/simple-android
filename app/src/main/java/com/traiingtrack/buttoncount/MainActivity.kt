@@ -8,7 +8,7 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private var editText: EditText? = null;
+    private var userInput: EditText? = null;
     private var button: Button? = null;
     private var textView: TextView? = null;
 
@@ -17,5 +17,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        userInput = findViewById<EditText>(R.id.userInput)
+        button = findViewById<Button>(R.id.button)
+        textView = findViewById<TextView>(R.id.editTextMain)
+        userInput?.setHint("Enter a name")
+        textView?.setText("")
+
+        button.setOnClickListener()
     }
 }
