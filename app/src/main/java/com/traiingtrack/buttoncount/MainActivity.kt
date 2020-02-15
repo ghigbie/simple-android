@@ -2,6 +2,7 @@ package com.traiingtrack.buttoncount
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -48,31 +49,35 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart called")
-
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "onRestoreInstanceState called")
+        super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onPause() {
-        super.onPause()
         Log.d(TAG, "onPause called")
+        super.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        Log.d(TAG, "onSaveInstanceState called")
+        super.onSaveInstanceState(outState, outPersistentState)
     }
 
     override fun onStop() {
-        super.onStop()
         Log.d(TAG, "onStop called")
+        super.onStop()
     }
 
     override fun onRestart() {
-        super.onRestart()
         Log.d(TAG, "onRestart called")
+        super.onRestart()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         Log.d(TAG, "onDestroy called")
+        super.onDestroy()
     }
 }
