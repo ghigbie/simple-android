@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         var numTimesClicked: Int = 0
         var name: String = ""
 
+        userInput?.setText("")
         userInput?.setHint("Enter a name")
         textView?.setText("")
 
@@ -32,9 +33,10 @@ class MainActivity : AppCompatActivity() {
                 numTimesClicked++;
                 name = userInput.text.toString()
                 val s: String = if(numTimesClicked > 1) "s" else ""
-                textView?.append("$name clicked the button $numTimesClicked time$s. \n")
-        }
-
+                textView?.append("$name clicked the button $numTimesClicked time$s.\n")
+                textView?.append("\n")
+                userInput.setText("")
+            }
 
         })
     }
