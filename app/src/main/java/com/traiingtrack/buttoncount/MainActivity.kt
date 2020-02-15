@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         Log.d(TAG, "onSaveInstanceState called")
         super.onSaveInstanceState(outState, outPersistentState)
-        outState?.putString(TEXT_CONTENTS, textView.text.toString())
+        outState?.putString(TEXT_CONTENTS, textView?.text.toString())
     }
 
     override fun onStop() {
