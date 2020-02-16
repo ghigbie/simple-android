@@ -2,7 +2,7 @@ package com.traiingtrack.buttoncount
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 private const val TAG: String = "MainActivity"
-private const val TEXT_CONTENTS = "TextContens"
+private const val TEXT_CONTENTS = "TextContent"
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,20 +30,20 @@ class MainActivity : AppCompatActivity() {
 
         userInput?.setText("")
         userInput?.setHint("Enter a name")
-        textView?.setText("")
 
         button?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 Log.d(TAG, "onClick called")
                 val toast: Toast = Toast.makeText(applicationContext, "You tapped me, ouch!", Toast.LENGTH_SHORT);
+//                toast.show()
                 numTimesClicked++;
                 name = userInput.text.toString()
                 val s: String = if(numTimesClicked > 1) "s" else ""
+                textView?.movementMethod = ScrollingMovementMethod()
                 textView?.append("$name clicked the button $numTimesClicked time$s.\n")
                 textView?.append("\n")
                 userInput.setText("")
             }
-
         })
     }
 
@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         Log.d(TAG, "onRestoreInstanceState called")
         super.onRestoreInstanceState(savedInstanceState)
+        Log.d(TAG, "************************************")
+        Log.d(TAG, savedInstanceState?.getString(TEXT_CONTENTS))
         textView?.text = savedInstanceState?.getString(TEXT_CONTENTS, "")
     }
 
@@ -63,9 +65,9 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+    override fun onSaveInstanceState(outState: Bundle?) {
         Log.d(TAG, "onSaveInstanceState called")
-        super.onSaveInstanceState(outState, outPersistentState)
+        super.onSaveInstanceState(outState)
         outState?.putString(TEXT_CONTENTS, textView?.text.toString())
     }
 
