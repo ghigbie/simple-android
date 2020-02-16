@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(p0: View?) {
                 Log.d(TAG, "onClick called")
 
+                name = userInput.text.toString()
                 if(name != "") {
                     numTimesClicked++;
                     name = userInput.text.toString()
@@ -42,15 +43,15 @@ class MainActivity : AppCompatActivity() {
                     textView?.movementMethod = ScrollingMovementMethod()
                     textView?.append("$name clicked the button $numTimesClicked time$s.\n")
                     textView?.append("\n")
-                    userInput.setText("")
                 }else{
                     val toast: Toast = Toast.makeText(
                         applicationContext,
                         "You tapped me, ouch! I need a name.",
                         Toast.LENGTH_SHORT
-                    );
+                    )
                     toast.show()
                 }
+                userInput.setText("")
             }
         })
     }
