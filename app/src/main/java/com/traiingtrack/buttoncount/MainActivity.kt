@@ -34,15 +34,23 @@ class MainActivity : AppCompatActivity() {
         button?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 Log.d(TAG, "onClick called")
-                val toast: Toast = Toast.makeText(applicationContext, "You tapped me, ouch!", Toast.LENGTH_SHORT);
-//                toast.show()
-                numTimesClicked++;
-                name = userInput.text.toString()
-                val s: String = if(numTimesClicked > 1) "s" else ""
-                textView?.movementMethod = ScrollingMovementMethod()
-                textView?.append("$name clicked the button $numTimesClicked time$s.\n")
-                textView?.append("\n")
-                userInput.setText("")
+
+                if(name != "") {
+                    numTimesClicked++;
+                    name = userInput.text.toString()
+                    val s: String = if(numTimesClicked > 1) "s" else ""
+                    textView?.movementMethod = ScrollingMovementMethod()
+                    textView?.append("$name clicked the button $numTimesClicked time$s.\n")
+                    textView?.append("\n")
+                    userInput.setText("")
+                }else{
+                    val toast: Toast = Toast.makeText(
+                        applicationContext,
+                        "You tapped me, ouch! I need a name.",
+                        Toast.LENGTH_SHORT
+                    );
+                    toast.show()
+                }
             }
         })
     }
